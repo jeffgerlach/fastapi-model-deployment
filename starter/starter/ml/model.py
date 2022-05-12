@@ -1,3 +1,4 @@
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 
 
@@ -18,12 +19,15 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
 
-    pass
+    model = RandomForestClassifier()
+    model.fit(X_train, y_train)
+    return model
 
 
 def compute_model_metrics(y, preds):
     """
-    Validates the trained machine learning model using precision, recall, and F1.
+    Validates the trained machine learning model using precision, recall,
+    and F1.
 
     Inputs
     ------
@@ -43,12 +47,25 @@ def compute_model_metrics(y, preds):
     return precision, recall, fbeta
 
 
+def compute_model_slice_metrics(model, X, y, vertical_slice):
+    predictions = inference(model, X)
+    metrics = {}
+    for cat_feature_option in set(vertical_slice):
+        mask = vertical_slice == cat_feature_option
+        precision, recall, f_beta = compute_model_metrics(y[mask],
+                                                          predictions[mask])
+        metrics[cat_feature_option] = {'precision': precision,
+                                       'recall': recall, 'f_beta': f_beta,
+                                       'count': sum(mask)}
+    return metrics
+
+
 def inference(model, X):
     """ Run model inferences and return the predictions.
 
     Inputs
     ------
-    model : ???
+    model : sklearn.ensemble.RandomForestClassifier
         Trained machine learning model.
     X : np.array
         Data used for prediction.
@@ -57,4 +74,4 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    pass
+    return model.predict(X)
