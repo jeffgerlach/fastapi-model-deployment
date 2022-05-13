@@ -1,6 +1,7 @@
 import sklearn
 import numpy as np
-from starter.starter.ml.model import train_model, compute_model_metrics, inference
+from starter.starter.ml.model import train_model, compute_model_metrics, \
+    inference
 
 
 def test_train_model(processed_data):
