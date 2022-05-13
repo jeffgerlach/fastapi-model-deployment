@@ -11,7 +11,7 @@ sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/.."))
 
 @pytest.fixture
 def data():
-    df = pd.read_csv("data/census_cleaned.csv", nrows=50)
+    df = pd.read_csv("starter/data/census_cleaned.csv", nrows=50)
     return df
 
 

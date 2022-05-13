@@ -33,7 +33,7 @@ def main():
 
     # Add code to load in the data.
     logger.info("Reading data")
-    data = pd.read_csv("data/census_cleaned.csv")
+    data = pd.read_csv("starter/data/census_cleaned.csv")
 
     logger.info("Splitting data")
     train, test = train_test_split(data, test_size=0.20)
@@ -79,13 +79,13 @@ def main():
         slice_metrics[cat_feature] = categorical_metrics
 
     logger.info("Saving model")
-    joblib.dump(rf_model, "model/trained_random_forest")
+    joblib.dump(rf_model, "starter/model/trained_random_forest")
 
     logger.info("Saving encoder")
-    joblib.dump(encoder, "model/random_forest_onehot_encoder")
+    joblib.dump(encoder, "starter/model/random_forest_onehot_encoder")
 
     logger.info("Saving metrics")
-    with open("model/slice_output.txt", "w", encoding="utf8") as json_file:
+    with open("starter/model/slice_output.txt", "w", encoding="utf8") as json_file:
         json.dump(slice_metrics, json_file)
 
 
