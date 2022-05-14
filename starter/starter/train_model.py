@@ -84,6 +84,9 @@ def main():
     logger.info("Saving encoder")
     joblib.dump(encoder, "starter/model/random_forest_onehot_encoder")
 
+    logger.info("Saving label binarizer")
+    joblib.dump(lb, "starter/model/label_binarizer")
+
     logger.info("Saving metrics")
     with open("starter/model/slice_output.txt", "w", encoding="utf8") as json_file:
         json.dump(slice_metrics, json_file)
