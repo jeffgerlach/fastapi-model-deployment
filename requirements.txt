@@ -5,3 +5,4 @@ numpy
 pytest
 fastapi
 uvicorn
+dvc[s3]
