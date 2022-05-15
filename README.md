@@ -1,6 +1,7 @@
 # Project links:
 * [Github repository](https://github.com/jeffgerlach/fastapi-model-deployment)
-* [FastAPI URL]()
+* [FastAPI GET URL](https://udacity-fastapi-model.herokuapp.com/)
+* [FastAPI POST URL](https://udacity-fastapi-model.herokuapp.com/predict)
 
 Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
 
