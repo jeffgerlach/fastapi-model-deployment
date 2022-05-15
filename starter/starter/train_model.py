@@ -6,8 +6,9 @@ import json
 import sys
 import os
 from sklearn.model_selection import train_test_split
+
 # pytest having issues importing, append path to fix
-sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/../.."))
+sys.path.append(os.path.realpath(os.path.dirname(__file__) + "/../.."))
 from starter.starter.ml.data import process_data  # noqa: E402
 from starter.starter.ml.model import train_model, inference, \
     compute_model_metrics, \
@@ -63,6 +64,12 @@ def main():
         f"Model test metrics: precision: {precision:.3f} recall: {recall:.3f} "
         f"f_beta: {f_beta:.3f}")
     logger.info("=" * 60)
+
+    # show example of running metrics on a single categorical feature
+    slice_metrics_example = compute_model_slice_metrics(rf_model, X_test,
+                                                        y_test,
+                                                        "sex")
+    logger.info("Slice metrics: ", slice_metrics_example)
 
     logger.info(
         "Computing model test metrics on all categorical feature slices:")

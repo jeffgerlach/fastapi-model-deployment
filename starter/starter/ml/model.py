@@ -47,11 +47,29 @@ def compute_model_metrics(y, preds):
     return precision, recall, fbeta
 
 
-def compute_model_slice_metrics(model, X, y, vertical_slice):
+def compute_model_slice_metrics(model, X, y, categorical_feature):
+    """
+    Validates the trained machine learning model using precision, recall,
+    and F1 on a single categorical feature, returned in a dict.
+
+    Inputs
+    ------
+    model : sklearn.ensemble.RandomForestClassifier
+        Trained machine learning model.
+    X : np.array
+        Data used for prediction.
+    y : np.array
+        Known labels, binarized.
+    categorical_feature: str
+        Predicted labels, binarized.
+    Returns
+    -------
+    metrics : dict
+    """
     predictions = inference(model, X)
     metrics = {}
-    for cat_feature_option in set(vertical_slice):
-        mask = vertical_slice == cat_feature_option
+    for cat_feature_option in set(categorical_feature):
+        mask = categorical_feature == cat_feature_option
         precision, recall, f_beta = compute_model_metrics(y[mask],
                                                           predictions[mask])
         metrics[cat_feature_option] = {'precision': precision,
