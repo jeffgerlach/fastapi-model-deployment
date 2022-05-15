@@ -28,7 +28,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest pandas scikit-learn==1.0.2 fastapi dvc[s3]
+        pip install flake8 pytest pandas scikit-learn==1.0.2 fastapi
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
